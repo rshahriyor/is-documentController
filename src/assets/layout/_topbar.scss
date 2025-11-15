@@ -2,21 +2,24 @@
 
 .layout-topbar {
     position: fixed;
-    height: 4rem;
+    height: 5rem;
     z-index: 997;
     left: 0;
     top: 0;
     width: 100%;
     padding: 0 2rem;
     background-color: var(--surface-card);
+    border: 1px solid #ddd;
     transition: left var(--layout-section-transition-duration);
     display: flex;
     align-items: center;
 
     .layout-topbar-logo-container {
+        height: 100%;
         width: 20rem;
         display: flex;
         align-items: center;
+        border-right: 1px solid #ddd;
     }
 
     .layout-topbar-logo {
