@@ -12,7 +12,6 @@
         transform var(--layout-section-transition-duration),
         left var(--layout-section-transition-duration);
     background-color: var(--surface-overlay);
-    padding: 0.5rem 1.5rem;
 }
 
 .layout-menu {
@@ -64,14 +63,14 @@
             outline: 0 none;
             color: var(--text-color);
             cursor: pointer;
-            padding: 0.75rem 1rem;
-            border-radius: var(--content-border-radius);
+            padding: 1rem;
             transition:
                 background-color var(--element-transition-duration),
                 box-shadow var(--element-transition-duration);
 
             .layout-menuitem-icon {
                 margin-right: 0.5rem;
+                font-size: 20px;
             }
 
             .layout-submenu-toggler {
@@ -82,15 +81,12 @@
 
             &.active-route {
                 font-weight: 700;
-                color: var(--primary-color);
+                color: white;
+                background-color: var(--bg-color);
             }
 
-            &:hover {
-                background-color: var(--surface-hover);
-            }
-
-            &:focus {
-                @include focused-inset();
+            &:hover:not(.active-route) {
+                background: var(--color-surface-300);
             }
         }
 
