@@ -16,10 +16,12 @@ export class AppMenu {
 
     ngOnInit() {
         this.model = [
-            // {
-            //     label: 'Home',
-            //     items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
-            // },
+            {
+                items: [
+                    { label: 'Сотрудники', icon: 'pi pi-fw pi-users', routerLink: ['/'] },
+                    { label: 'Почта', icon: 'pi pi-fw pi-inbox' }
+                ]
+            },
             // {
             //     label: 'UI Components',
             //     items: [
