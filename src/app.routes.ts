@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AppLayout } from './app/layout/components/layout/app.layout';
-import { Dashboard } from './app/pages/dashboard/dashboard';
 import { Notfound } from './app/pages/notfound/notfound';
+import { Employees } from '@/pages/employees/employees';
 
 export const appRoutes: Routes = [
     {
@@ -9,23 +9,18 @@ export const appRoutes: Routes = [
         component: AppLayout,
         children: [
             { 
-                path: '', 
-                component: Dashboard 
-            },
-            { 
-                path: 'pages', 
-                loadChildren: () => import('./app/pages/pages.routes') 
+                path: '',
+                loadChildren: () => import('./app/pages/pages.routes').then(m => m.default)
             }
         ]
     },
-    { 
+    {
         path: 'notfound', 
         component: Notfound 
     },
-
     { 
         path: 'auth', 
-        loadComponent: () => import('./app/pages/auth/login').then(c => c.Login) 
+        loadComponent: () => import('./app/pages/auth/login').then(c => c.Login)
     },
     { 
         path: '**', 

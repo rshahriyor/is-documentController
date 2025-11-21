@@ -1,8 +1,19 @@
 import { Routes } from '@angular/router';
+import { Employees } from './employees/employees';
+import { Inbox } from './inbox/inbox';
 
 export default [
-    { 
-        path: '**', 
-        redirectTo: '/notfound' 
+    {
+        path: '',
+        redirectTo: 'employees',
+        pathMatch: 'full'
+    },
+    {
+        path: 'employees',
+        component: Employees
+    },
+    {
+        path: 'inbox',
+        component: Inbox
     }
 ] as Routes;
