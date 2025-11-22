@@ -1,5 +1,5 @@
 <app-page-title [icon]="'pi pi-fw pi-users'" [title]="'Сотрудники'"></app-page-title>
-<p-table [value]="products" [tableStyle]="{'min-width': '50rem'}">
+<p-table [value]="employees()" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
     <ng-template #header>
         <tr>
             @for (item of cols; track $index) {
@@ -9,10 +9,13 @@
     </ng-template>
     <ng-template #body let-employee>
         <tr class="cursor-pointer">
+            <td>
+                <img [src]="employee.avatar" [alt]="employee.avatar" width="50" height="50" class="rounded-full">
+            </td>
             <td>{{employee.name}}</td>
             <td>{{employee.lastName}}</td>
-            <td>{{employee.age}}</td>
-            <td>{{employee.role}}</td>
+            <td>{{employee.birthday | date:'dd/MM/yyyy'}}</td>
+            <td>{{employee.email}}</td>
         </tr>
     </ng-template>
 </p-table>

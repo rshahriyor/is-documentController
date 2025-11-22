@@ -82,7 +82,7 @@
             &.active-route {
                 font-weight: 700;
                 color: white;
-                background-color: var(--bg-color);
+                background-color: var(--main-color);
             }
 
             &:hover:not(.active-route) {
