@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { PageTitle } from "@/shared/components/page-title/page-title";
+import { EmployeesService } from './employees.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-employees',
@@ -10,26 +12,30 @@ import { PageTitle } from "@/shared/components/page-title/page-title";
   templateUrl: './employees.html',
   styleUrl: './employees.scss'
 })
-export class Employees {
+export class Employees implements OnInit {
   cols: any[] = [
+    { name: 'Изображение' },
     { name: 'Имя' },
     { name: 'Фамилия' },
-    { name: 'Возраст' },
-    { name: 'Должность' }
+    { name: 'Дата рождения' },
+    { name: 'Почта' }
+  ];
+  employees = signal([]);
 
-  ];
-  products: any[] = [
-    {
-      name: 'Шахриёр',
-      lastName: 'Рахматов',
-      age: '18',
-      role: 'Учитель'
-    },
-    {
-      name: 'Абдушариф',
-      lastName: 'Сатторов',
-      age: '18',
-      role: 'Учитель'
-    }
-  ];
+  private service = inject(EmployeesService);
+  private destroyRef = inject(DestroyRef);
+
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
+  private getEmployees(): void {
+    this.service.getEmployees()
+    .pipe(
+      takeUntilDestroyed(this.destroyRef)
+    )
+    .subscribe((res) => {
+      this.employees.set(res);
+    })
+  }
 }
