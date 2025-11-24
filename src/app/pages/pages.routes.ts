@@ -14,6 +14,6 @@ export default [
     },
     {
         path: 'inbox',
-        component: Inbox
+        loadChildren: () => import('./inbox/inbox.routes').then(r => r.default)
     }
 ] as Routes;
