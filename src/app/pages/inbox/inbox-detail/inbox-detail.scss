@@ -1,0 +1,15 @@
+:host ::ng-deep {
+
+    .p-card-header {
+        padding: 1.25rem 1.25rem 0 1.25rem;
+    }
+
+    .p-button-text {
+        color: var(--main-color);
+
+        &:not(:disabled):hover {
+            color: var(--main-color);
+            background: color-mix(in srgb, var(--main-color) 10%, transparent);
+        }
+    }
+}

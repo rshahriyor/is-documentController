@@ -1,1 +1,17 @@
-<p>inbox works!</p>
+<app-page-title [icon]="'pi pi-fw pi-inbox'" [title]="'Почта'"></app-page-title>
+<p-table [value]="messages()" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]">
+    <ng-template #header>
+        <tr>
+            @for (item of cols; track $index) {
+                <th>{{item.name}}</th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template #body let-message>
+        <tr [routerLink]="'/inbox/' + message.id" [ngClass]="message.read ? 'font-normal' : 'font-bold'" class="cursor-pointer">
+            <td>{{message.fullName}}</td>
+            <td>{{message.text.slice(0, 100)}}</td>
+            <td>{{message.date | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+        </tr>
+    </ng-template>
+</p-table>
