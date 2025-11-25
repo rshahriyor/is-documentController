@@ -18,8 +18,10 @@ export class AppMenu {
         this.model = [
             {
                 items: [
-                    { label: 'Сотрудники', icon: 'pi pi-fw pi-users', routerLink: ['/employees'] },
-                    { label: 'Почта', icon: 'pi pi-fw pi-inbox', routerLink: ['/inbox'] }
+                    { label: 'Кормандон', icon: 'pi pi-fw pi-users', routerLink: ['/employees'] },
+                    { label: 'Почта', icon: 'pi pi-fw pi-inbox', routerLink: ['/inbox'] },
+                    { label: 'Самти тарбиявӣ', icon: 'pi pi-fw pi-book', routerLink: ['/pedagogical'] },
+                    { label: 'Самти таълимӣ', icon: 'pi pi-fw pi-lightbulb', routerLink: ['/educational'] }
                 ]
             },
             // {

@@ -15,5 +15,13 @@ export default [
     {
         path: 'inbox',
         loadChildren: () => import('./inbox/inbox.routes').then(r => r.default)
+    },
+    {
+        path: 'pedagogical',
+        loadComponent: () => import('./pedagogical/pedagogical').then(c => c.Pedagogical)
+    },
+    {
+        path: 'educational',
+        loadComponent: () => import('./educational/educational').then(c => c.Educational)
     }
 ] as Routes;
