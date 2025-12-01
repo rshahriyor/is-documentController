@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Employees } from './employees/employees';
-import { Inbox } from './inbox/inbox';
+import { Inbox } from './mail/inbox/inbox';
 
 export default [
     {
@@ -14,7 +14,11 @@ export default [
     },
     {
         path: 'inbox',
-        loadChildren: () => import('./inbox/inbox.routes').then(r => r.default)
+        loadChildren: () => import('./mail/inbox/inbox.routes').then(r => r.default)
+    },
+    {
+        path: 'sent',
+        loadComponent: () => import('./mail/sent/sent').then(c => c.Sent)
     },
     {
         path: 'pedagogical',

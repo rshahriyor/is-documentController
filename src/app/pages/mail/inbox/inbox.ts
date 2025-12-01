@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
-import { InboxService } from './inbox.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from "@angular/router";
+import { MailService } from '../mail.service';
+import { ComposeButton } from "@/shared/components/compose-button/compose-button";
 
 @Component({
   selector: 'app-inbox',
-  imports: [TableModule, CommonModule, CardModule, PageTitle, RouterLink],
+  imports: [TableModule, CommonModule, CardModule, PageTitle, RouterLink, ComposeButton],
   templateUrl: './inbox.html',
   styleUrl: './inbox.scss'
 })
@@ -22,7 +23,7 @@ export class Inbox implements OnInit {
 
   messages = signal([]);
 
-  private service = inject(InboxService);
+  private service = inject(MailService);
   private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {

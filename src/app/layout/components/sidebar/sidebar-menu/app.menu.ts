@@ -19,7 +19,18 @@ export class AppMenu {
             {
                 items: [
                     { label: 'Кормандон', icon: 'pi pi-fw pi-users', routerLink: ['/employees'] },
-                    { label: 'Почта', icon: 'pi pi-fw pi-inbox', routerLink: ['/inbox'] },
+                    { label: 'Почта', icon: 'pi pi-fw pi-inbox', items: [
+                        {
+                            label: 'Входящие',
+                            icon: 'pi pi-fw pi-envelope',
+                            routerLink: ['/inbox']
+                        },
+                        {
+                            label: 'Отправленные',
+                            icon: 'pi pi-fw pi-send',
+                            routerLink: ['/sent']
+                        }
+                    ] },
                     { label: 'Самти тарбиявӣ', icon: 'pi pi-fw pi-book', routerLink: ['/pedagogical'] },
                     { label: 'Самти таълимӣ', icon: 'pi pi-fw pi-lightbulb', routerLink: ['/educational'] }
                 ]
