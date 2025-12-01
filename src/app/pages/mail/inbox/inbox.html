@@ -1,4 +1,7 @@
-<app-page-title [icon]="'pi pi-fw pi-inbox'" [title]="'Почта'"></app-page-title>
+<div class="flex items-center justify-between">
+    <app-page-title [icon]="'pi pi-fw pi-envelope'" [title]="'Входящие'"></app-page-title>
+    <app-compose-button class="max-w-40 w-full"></app-compose-button>
+</div>
 <p-table [value]="messages()" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]">
     <ng-template #header>
         <tr>

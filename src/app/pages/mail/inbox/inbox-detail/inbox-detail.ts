@@ -1,19 +1,11 @@
 import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { InboxService } from '../inbox.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { Back } from "@/shared/components/back/back";
 import { ButtonModule } from 'primeng/button';
-
-export interface IMessage {
-  id?: number,
-  fullName?: string,
-  text?: string
-  date?: Date,
-  read?: boolean,
-}
+import { IMessage, MailService } from '../../mail.service';
 
 @Component({
   selector: 'app-inbox-detail',
@@ -26,7 +18,7 @@ export class InboxDetail implements OnInit {
   messageId: WritableSignal<number | null> = signal(null);
   message: WritableSignal<IMessage> = signal({});
 
-  private service = inject(InboxService);
+  private service = inject(MailService);
   private destroyRef = inject(DestroyRef);
   private activeRoute = inject(ActivatedRoute);
 
