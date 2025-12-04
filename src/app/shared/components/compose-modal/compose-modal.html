@@ -1,0 +1,14 @@
+<p-dialog header="Новое сообщение" (onHide)="close.emit(true)" [dismissableMask]="true" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+    <p-floatlabel variant="on">
+        <textarea pTextarea id="on_label" rows="5" cols="30" class="h-full w-full"></textarea>
+        <label for="on_label">Новое сообщение</label>
+    </p-floatlabel>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-start w-full gap-3">
+            <button (click)="send()" [icon]="sendLoading() ? 'pi pi-spin pi-spinner' : 'pi pi-send'" pButton label="Отправить" class="send"></button>
+            <p-fileupload mode="basic" chooseLabel="Выбрать файл" chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx" maxFileSize="1000000" [customUpload]="true" (onBeforeUpload)="myUpload($event)">
+            </p-fileupload>
+        </div>
+    </ng-template>
+</p-dialog>
