@@ -1,0 +1,24 @@
+:host ::ng-deep {
+
+    .p-dialog-content {
+        padding-top: 5px;
+    }
+
+    .p-textarea:enabled:focus {
+        border-color: var(--main-color);
+    }
+
+    .p-floatlabel:has(textarea:focus) label {
+        color: var(--main-color);
+    }
+
+    .p-button.send, .p-fileupload-choose-button {
+        background: var(--main-color);
+        border: none;
+
+        &:not(:disabled):hover {
+            background: color-mix(in srgb, var(--main-color) 80%, black);
+            border: none;
+        }
+    }
+}
