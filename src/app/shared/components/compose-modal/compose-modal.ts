@@ -4,6 +4,13 @@ import { TextareaModule } from 'primeng/textarea';
 import { FloatLabel } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 import { FileUpload } from 'primeng/fileupload';
+import { FileType } from '@/core/enums/file.enum';
+
+interface UploadedFile {
+  file: File;
+  type: FileType;
+  icon: string;
+}
 
 @Component({
   selector: 'app-compose-modal',
@@ -15,7 +22,16 @@ export class ComposeModal {
   close = output<boolean>();
   visible = signal(true);
   sendLoading = signal(false);
-  files: File[] = [];
+  files: UploadedFile[] = [];
+
+  iconsMap: any = {
+    [FileType.IMAGE]: 'pi pi-image',
+    [FileType.PDF]: 'pi pi-file-pdf',
+    [FileType.WORD]: 'pi pi-file-word',
+    [FileType.EXCEL]: 'pi pi-file-excel',
+    [FileType.ARCHIVE]: 'pi pi-file-zip',
+    [FileType.OTHER]: 'pi pi-file'
+  };
 
   send(): void {
     this.sendLoading.set(true);
@@ -25,17 +41,40 @@ export class ComposeModal {
   }
 
   myUpload(event: any) {
-    this.files = event.files;
-    console.log('Выбранные файлы:', this.files);
+    const oldFiles: File[] = this.files.map(f => f.file);
+
+    const newFiles: File[] = Array.from(event.files);
+
+    const allFiles = [...oldFiles, ...newFiles];
+
+    this.files = allFiles.map((file: File) => {
+      const type = this.getFileType(file);
+      return {
+        file,
+        type,
+        icon: this.iconsMap[type]
+      };
+    });
   }
 
-  uploadFiles() {
-    if (!this.files.length) return;
+  removeFile(file: any) {
+    const exist = this.files.indexOf(file);
+    this.files.splice(exist, 1)
+  }
 
-    this.files.forEach(file => {
-      console.log('Загружаем файл:', file.name);
-    });
+  getFileType(file: File): FileType {
+    const type = file.type;
 
-    this.files = [];
+    if (type.startsWith('image/')) return FileType.IMAGE;
+    if (type === 'application/pdf') return FileType.PDF;
+    if (type === 'application/msword'
+      || type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+      return FileType.WORD;
+    if (type === 'application/vnd.ms-excel'
+      || type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      return FileType.EXCEL;
+    if (type.includes('zip') || type.includes('rar')) return FileType.ARCHIVE;
+
+    return FileType.OTHER;
   }
 }
