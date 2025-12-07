@@ -4,12 +4,22 @@
         padding-top: 5px;
     }
 
-    .p-textarea:enabled:focus {
+    .p-inputtext:enabled:focus  {
         border-color: var(--main-color);
     }
 
-    .p-floatlabel:has(textarea:focus) label {
+    .p-floatlabel:has(.p-inputtext) label{
         color: var(--main-color);
+    }
+
+    .p-editor .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label, .p-editor .ql-snow.ql-toolbar .ql-picker-label.ql-active, .p-editor .ql-snow.ql-toolbar button.ql-active {
+        color: var(--main-color);
+        background-color: color-mix(in srgb, var(--main-color) 10%, transparent);
+        border-radius: 8px;
+    }
+
+    .p-editor .ql-snow.ql-toolbar button.ql-active .ql-stroke, .p-editor .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke, .p-editor .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke {
+        stroke: var(--main-color);
     }
 
     .p-button.send, .p-fileupload-choose-button {

@@ -1,10 +1,14 @@
 import { Component, output, signal } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { TextareaModule } from 'primeng/textarea';
-import { FloatLabel } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 import { FileUpload } from 'primeng/fileupload';
 import { FileType } from '@/core/enums/file.enum';
+import { Editor } from 'primeng/editor';
+import { FormsModule } from '@angular/forms';
+import { FloatLabel } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { TreeSelect } from 'primeng/treeselect';
 
 interface UploadedFile {
   file: File;
@@ -14,7 +18,7 @@ interface UploadedFile {
 
 @Component({
   selector: 'app-compose-modal',
-  imports: [Dialog, TextareaModule, FloatLabel, ButtonModule, FileUpload],
+  imports: [Dialog, TextareaModule, FormsModule, ButtonModule, FileUpload, Editor, FloatLabel, InputTextModule, TreeSelect],
   templateUrl: './compose-modal.html',
   styleUrl: './compose-modal.scss'
 })
@@ -23,6 +27,33 @@ export class ComposeModal {
   visible = signal(true);
   sendLoading = signal(false);
   files: UploadedFile[] = [];
+  text: string = '';
+  users = signal([
+    {
+      label: 'Самти тарбияви',
+      children: [
+        {
+          label: 'fasdf'
+        }
+      ]
+    },
+    {
+      label: 'Самти илм',
+      children: [
+        {
+          label: 'fasdf'
+        }
+      ]
+    },
+    {
+      label: 'Самти таълими',
+      children: [
+        {
+          label: 'fasdf'
+        }
+      ]
+    }
+  ]);
 
   iconsMap: any = {
     [FileType.IMAGE]: 'pi pi-image',

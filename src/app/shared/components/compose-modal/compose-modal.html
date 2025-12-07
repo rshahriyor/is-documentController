@@ -1,27 +1,52 @@
-<p-dialog header="Новое сообщение" (onHide)="close.emit(true)" [dismissableMask]="true" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
-    <p-floatlabel variant="on">
-        <textarea pTextarea id="on_label" rows="5" cols="30" class="h-full w-full"></textarea>
-        <label for="on_label">Новое сообщение</label>
-    </p-floatlabel>
+<p-dialog header="Новое сообщение" (onHide)="close.emit(true)" [dismissableMask]="true" [modal]="true"
+    [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true">
 
-    @if (files.length) {
-    <div class="flex flex-col gap-2 mt-[17.5px]">
-        @for (file of files; track $index) {
-        <div class="flex items-center justify-between border border-[var(--main-color)]/50 rounded-md p-2">
-            <div class="flex items-center gap-2">
-                <i [class]="file.icon"></i>
-                <span>{{ file.file.name }}</span>
+    <div class="flex flex-col gap-4">
+        <p-treeselect class="w-full md:w-80" [options]="users()" display="chip" [metaKeySelection]="false"
+            selectionMode="checkbox" placeholder="Отправить кому" />
+
+        <p-floatlabel variant="on">
+            <input pInputText id="on_label" autocomplete="off" class="w-full" />
+            <label for="on_label">Тема</label>
+        </p-floatlabel>
+
+        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }">
+            <ng-template #header>
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    <select class="ql-size">
+                        <option value="small">Маленький</option>
+                        <option value="" selected>Обычный</option>
+                        <option value="large">Большой</option>
+                    </select>
+                </span>
+            </ng-template>
+        </p-editor>
+
+        @if (files.length) {
+        <div class="flex flex-col gap-2 mt-[17.5px]">
+            @for (file of files; track $index) {
+            <div class="flex items-center justify-between border border-[var(--main-color)]/50 rounded-md p-2">
+                <div class="flex items-center gap-2">
+                    <i [class]="file.icon"></i>
+                    <span>{{ file.file.name }}</span>
+                </div>
+                <i (click)="removeFile(file)" class="pi pi-times cursor-pointer"></i>
             </div>
-            <i (click)="removeFile(file)" class="pi pi-times cursor-pointer"></i>
+            }
         </div>
         }
     </div>
-    }
 
     <ng-template pTemplate="footer">
         <div class="flex justify-start w-full gap-3">
-            <button (click)="send()" [icon]="sendLoading() ? 'pi pi-spin pi-spinner' : 'pi pi-send'" pButton label="Отправить" class="send"></button>
-            <p-fileUpload chooseLabel="Выбрать файл" name="demo[]" mode="basic" [multiple]="true" [customUpload]="true" (onSelect)="myUpload($event)">
+            <button (click)="send()" [icon]="sendLoading() ? 'pi pi-spin pi-spinner' : 'pi pi-send'" pButton
+                label="Отправить" class="send"></button>
+            <p-fileUpload chooseLabel="Выбрать файл" name="demo[]" mode="basic" [multiple]="true" [customUpload]="true"
+                (onSelect)="myUpload($event)">
             </p-fileUpload>
         </div>
     </ng-template>
