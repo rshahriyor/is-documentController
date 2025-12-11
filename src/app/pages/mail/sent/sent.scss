@@ -23,4 +23,14 @@
             background-color: #f4f4f4;
         }
     }
+
+    .p-button.view {
+        background: var(--main-color);
+        border: none;
+
+        &:not(:disabled):hover {
+            background: color-mix(in srgb, var(--main-color) 80%, black);
+            border: none;
+        }
+    }
 }

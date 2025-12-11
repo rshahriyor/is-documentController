@@ -1,15 +1,15 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { PageTitle } from "@/shared/components/page-title/page-title";
 import { TableModule } from "primeng/table";
-import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MailService } from '../mail.service';
 import { CommonModule } from '@angular/common';
 import { ComposeButton } from "@/shared/components/compose-button/compose-button";
+import { ButtonDirective } from "primeng/button";
 
 @Component({
   selector: 'app-sent',
-  imports: [PageTitle, TableModule, RouterLink, CommonModule, ComposeButton],
+  imports: [PageTitle, TableModule, CommonModule, ComposeButton, ButtonDirective],
   templateUrl: './sent.html',
   styleUrl: './sent.scss'
 })
@@ -18,7 +18,7 @@ export class Sent {
     { name: 'Отправлено' },
     { name: 'Сообщение' },
     { name: 'Дата и время' },
-    { name: 'Число прочитанных' }
+    { name: 'Прочитано' }
   ];
 
   messages = signal([]);
