@@ -11,13 +11,12 @@
         </tr>
     </ng-template>
     <ng-template #body let-message>
-        <tr [routerLink]="'/inbox/' + message.id" class="cursor-pointer">
+        <tr class="cursor-pointer">
             <td>{{message.fullName}}</td>
             <td class="max-w-xl">{{message.text.slice(0, 100)}}</td>
             <td>{{message.date | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-            <td>
-                <i class="pi pi-eye mr-3"></i>
-                <span>{{message.id}}</span>
+            <td class="flex justify-center">
+                <button pButton label="Посмотреть" icon="pi pi-eye" class="view"></button>
             </td>
         </tr>
     </ng-template>
