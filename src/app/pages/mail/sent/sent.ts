@@ -6,10 +6,11 @@ import { MailService } from '../mail.service';
 import { CommonModule } from '@angular/common';
 import { ComposeButton } from "@/shared/components/compose-button/compose-button";
 import { ButtonDirective } from "primeng/button";
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-sent',
-  imports: [PageTitle, TableModule, CommonModule, ComposeButton, ButtonDirective],
+  imports: [PageTitle, TableModule, CommonModule, ComposeButton, ButtonDirective, Dialog],
   templateUrl: './sent.html',
   styleUrl: './sent.scss'
 })
@@ -22,6 +23,7 @@ export class Sent {
   ];
 
   messages = signal([]);
+  dialog = signal(false);
 
   private service = inject(MailService);
   private destroyRef = inject(DestroyRef);
